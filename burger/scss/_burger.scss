@@ -84,11 +84,16 @@ $line_m: 15px;
 }
 
 .burger__lines {
+	position: absolute;
 	@include flexbox();
 	@include size(100%, 100%);
+	padding-top: 30%;
+	padding-bottom: 30%;
 }
 
 .burger__line {
+	position: absolute;
+	display: block;
 	border-radius: 15px;
 	@include size(68%, $line / $w * 100%);
 	@include color_main(1);
