@@ -4,16 +4,17 @@ body {
 }
 
 .wrapper {
-	min-height: calc(100vh - 40px);
     display: flex;
+    min-height: 100vh;
+    overflow: hidden;
     flex-direction: column;
-    background: #323232;
-    padding: 20px 20px;
+    background-color: #393939;
 }
 
 .conteiner {
-	flex: 1 1 auto;
-	display: flex;
-	justify-content: center;
+    display: flex;
+    padding: 0 15px 0 15px;
+    min-height: 100vh;
+    justify-content: center;
     align-items: center;
 }

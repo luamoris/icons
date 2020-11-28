@@ -1,6 +1,7 @@
 
 const burger 			= document.querySelector(".burger");
 const burgerBackground 	= burger.querySelector(".burger__background");
+const wrapper 			= document.querySelector(".wrapper");
 
 console.dir(burger);
 
@@ -8,10 +9,12 @@ burger.onclick = () => {
 	if(burger.classList.contains('active')) {
 		burger.classList.remove('active'); 
 		burger.classList.add('none'); 
+		wrapper.style.background = '#393939';
 	}
 	else { 
 		burger.classList.remove('none'); 
 		burger.classList.add('active'); 
+		wrapper.style.background = 'white';
 	}
 };
 

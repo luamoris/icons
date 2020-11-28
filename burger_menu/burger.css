@@ -15,6 +15,7 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
 .burger__body {
@@ -44,7 +45,6 @@
 	animation: backgroud_pulse 500ms ease-out;
 	transform: scale(0);
 	position: absolute;
-
 }
 
 @keyframes backgroud_pulse {
