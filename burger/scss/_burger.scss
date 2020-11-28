@@ -1,0 +1,195 @@
+/*========================================================================
+Burger
+==========================================================================*/
+
+// -----------------  var  -----------------
+
+$w: 50px;
+$h: 50px;
+$line: 4px;
+$line_m: 15px;
+
+
+// -----------------  mixin  -----------------
+
+// размеры
+@mixin size($w, $h) {
+	width: $w;
+	height: $h;
+}
+
+// основной цвет и его прозрачность 
+@mixin color_main($opacity){
+	background-color: rgba(77, 196, 255, $opacity);
+}
+
+// full flex
+@mixin flexbox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+/*-----------------  Template  -----------------*/
+
+/*  Убрать возможность выдиление объектов и картинок  */
+.unselectable {
+	user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Пульсация при ЛКМ */
+.pulse {
+	position: absolute;
+	border-radius: 50%;
+	@include color_main(1);
+	transform: scale(0);
+	animation: pulse 500ms ease-out;
+}
+
+/* Подгон для изображений */
+.icon-img {
+	@include size(100%, 100%);
+}
+
+/*-----------------  Main  -----------------*/
+
+.burger {
+	position: relative;
+	display: flex;
+	cursor: pointer;
+	@include size($w, $h);
+
+	&:hover .burger__background { opacity: 1; }
+	&.active .burger__semi-circle { animation: semi-circle_active 400ms ease-out forwards; }
+	&.none .burger__semi-circle { animation: semi-circle_none 400ms ease-out forwards; }
+
+	&.active .burger__line:nth-child(1) { animation: line_active 500ms ease forwards; }
+	&.active .burger__line:nth-child(2) { animation: line_active 500ms ease forwards; }
+	&.active .burger__line:nth-child(3) { animation: line_active_reverse 500ms ease forwards; }
+
+	&.none .burger__line:nth-child(1) { animation: line_none 500ms ease forwards; }
+	&.none .burger__line:nth-child(2) { animation: line_none 500ms ease forwards; }
+	&.none .burger__line:nth-child(3) { animation: line_none_reverse 500ms ease forwards; }
+}
+
+/* bady */
+
+.burger__body {
+	position: absolute;
+	@include size(100%, 100%);
+	pointer-events: none;
+}
+
+.burger__lines {
+	position: absolute;
+	@include flexbox();
+	@include size(100%, 100%);
+}
+
+.burger__line {
+	position: absolute;
+	border-radius: 15px;
+	@include size(68%, $line / $w * 100%);
+	@include color_main(1);
+
+	&:nth-child(1) { margin-bottom: $line_m / $w * 100%; }
+	&:nth-child(2) { width: 64%; }
+	&:nth-child(3) { margin-top: $line_m / $w * 100%; width: 60%; }
+}
+
+/* background */
+
+.burger__background {
+	position: relative;
+	align-self: center;
+	margin: 0 auto;
+	overflow: hidden;
+	@include size(85%, 85%);
+	border-radius: 50%;
+	@include color_main(0.1);
+	opacity: 0;
+	transition: 100ms ease 0ms;
+}
+
+/*-----------------  Keyframe  -----------------*/
+
+@keyframes pulse {
+	100% {
+		@include color_main(0.7);
+		opacity: 0;
+		transform: scale(2);
+	}
+}
+
+@keyframes semi-circle_active {
+	70% {
+		transform: rotate(200deg);
+	}
+	100% {
+		transform: rotate(180deg);
+	}
+}
+
+@keyframes semi-circle_none {
+	0% {
+		transform: rotate(180deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes line_active {
+	60% {
+		width: 68%;
+		margin: 0;
+		transform: none;
+	}
+	100% {
+		width: 68%;
+		margin: 0;
+		transform: rotate(45deg);
+	}
+}
+
+@keyframes line_active_reverse {
+	60% {
+		width: 68%;
+		margin: 0;
+		transform: none;
+	}
+	100% {
+		width: 68%;
+		margin: 0;
+		transform: rotate(-45deg);
+	}
+}
+
+@keyframes line_none {
+	0% {
+		width: 68%;
+		margin: 0;
+		transform: rotate(45deg);
+	}
+	60% {
+		width: 68%;
+		margin: 0;
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes line_none_reverse {
+	0% {
+		width: 68%;
+		margin: 0;
+		transform: rotate(-45deg);
+	}
+	60% {
+		width: 68%;
+		margin: 0;
+		transform: rotate(0deg);
+	}
+}

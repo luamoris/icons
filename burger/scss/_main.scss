@@ -1,0 +1,26 @@
+/*========================================================================
+Main Box Style
+==========================================================================*/ 
+
+// Переменные
+
+$color_back: #393939;
+
+// -----------------------------------------------------------------------
+
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+    flex-direction: column;
+	background-color: $color_back;
+	transition: 300ms ease-out;
+}
+
+.conteiner {
+    display: flex;
+    padding: 0 15px 0 15px;
+    min-height: 100vh;
+    justify-content: center;
+	align-items: center;
+}
