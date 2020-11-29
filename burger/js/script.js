@@ -1,5 +1,6 @@
 // Var
 const burger 		= document.querySelector(".burger");
+const semiCircle 	= document.querySelector(".burger__semi-circle");
 const wrapper 		= document.querySelector(".wrapper");
 const background 	= burger.querySelector(".burger__background");
 
@@ -7,14 +8,15 @@ const background 	= burger.querySelector(".burger__background");
 // Event
 
 burger.onclick = () => {
-	if (burger.classList.contains('active')) {
-		burger.classList.remove('active');
-		burger.classList.add('none');
+	burger.classList.toggle('active');
+	if (semiCircle.classList.contains('active')) {
+		semiCircle.classList.remove('active');
+		semiCircle.classList.add('none');
 		wrapper.style.background = '#393939';
 	}
 	else {
-		burger.classList.remove('none');
-		burger.classList.add('active');
+		semiCircle.classList.remove('none');
+		semiCircle.classList.add('active');
 		wrapper.style.background = 'white';
 	}
 };

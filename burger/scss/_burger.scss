@@ -63,16 +63,24 @@ $line_m: 15px;
 	@include size($w, $h);
 
 	&:hover .burger__background { opacity: 1; }
-	&.active .burger__semi-circle { animation: semi-circle_active 400ms ease-out forwards; }
-	&.none .burger__semi-circle { animation: semi-circle_none 400ms ease-out forwards; }
 
-	&.active .burger__line:nth-child(1) { animation: line_active 500ms ease forwards; }
-	&.active .burger__line:nth-child(2) { animation: line_active 500ms ease forwards; }
-	&.active .burger__line:nth-child(3) { animation: line_active_reverse 500ms ease forwards; }
+	&.active .body__lines {
+		&::before {
+			top: 45%;
+			transform: rotate(45deg);
+			transition: all 500ms ease 0s;
+		}
+		&::after {
+			bottom: 45%;
+			transform: rotate(-45deg);
+			transition: all 500ms ease 0s;
+		}
+	}
 
-	&.none .burger__line:nth-child(1) { animation: line_none 500ms ease forwards; }
-	&.none .burger__line:nth-child(2) { animation: line_none 500ms ease forwards; }
-	&.none .burger__line:nth-child(3) { animation: line_none_reverse 500ms ease forwards; }
+	&.active .line {
+		transform: scale(0);
+		transition: all 500ms ease 0s;
+	}
 }
 
 /* bady */
@@ -83,24 +91,33 @@ $line_m: 15px;
 	pointer-events: none;
 }
 
-.burger__lines {
+.burger__semi-circle.active { animation: semi-circle_active 400ms ease-out forwards; }
+.burger__semi-circle.none { animation: semi-circle_none 400ms ease-out forwards; }
+
+.body__lines {
 	position: absolute;
 	@include flexbox();
 	@include size(100%, 100%);
-	padding-top: 30%;
-	padding-bottom: 30%;
+
+	&::before { top: 30%; }
+	&::after { bottom: 30%; }
+	&::before, &::after {
+		content: '';
+		position: absolute;
+		width: 60%;
+		height: $line;
+		border-radius: 20px;
+		@include color_main(1);
+		transition: all 300ms ease 0s;
+	}
 }
 
-.burger__line {
-	position: absolute;
-	display: block;
-	border-radius: 15px;
-	@include size(68%, $line / $w * 100%);
+.line {
+	width: 60%;
+	height: $line;
+	border-radius: 20px;
 	@include color_main(1);
-
-	&:nth-child(1) { margin-bottom: $line_m / $w * 100%; }
-	&:nth-child(2) { width: 64%; }
-	&:nth-child(3) { margin-top: $line_m / $w * 100%; width: 60%; }
+	transition: all 300ms ease 0s;
 }
 
 /* background */
@@ -142,57 +159,5 @@ $line_m: 15px;
 	}
 	100% {
 		transform: rotate(360deg);
-	}
-}
-
-@keyframes line_active {
-	60% {
-		width: 68%;
-		margin: 0;
-		transform: none;
-	}
-	100% {
-		width: 68%;
-		margin: 0;
-		transform: rotate(45deg);
-	}
-}
-
-@keyframes line_active_reverse {
-	60% {
-		width: 68%;
-		margin: 0;
-		transform: none;
-	}
-	100% {
-		width: 68%;
-		margin: 0;
-		transform: rotate(-45deg);
-	}
-}
-
-@keyframes line_none {
-	0% {
-		width: 68%;
-		margin: 0;
-		transform: rotate(45deg);
-	}
-	60% {
-		width: 68%;
-		margin: 0;
-		transform: rotate(0deg);
-	}
-}
-
-@keyframes line_none_reverse {
-	0% {
-		width: 68%;
-		margin: 0;
-		transform: rotate(-45deg);
-	}
-	60% {
-		width: 68%;
-		margin: 0;
-		transform: rotate(0deg);
 	}
 }
