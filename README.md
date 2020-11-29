@@ -1,4 +1,4 @@
-## Luamirus Animated icons
+## Luamoris Animated icons
 
 Animated icons for websites. Used technologies such as HTML, CSS (SCSS), Javascript.
 
